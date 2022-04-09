@@ -1,0 +1,23 @@
+[package]
+name = "ferrux_projection_matrix"
+description = "Perspective projection tool builder to help in 3D rendering calculations"
+version = "0.1.0"
+authors = ["Soto Estévez <ricardo@sotoestevez.dev>"]
+edition = "2021"
+readme = "./README.md"
+homepage = "https://crates.io/crates/ferrux_projection_matrix"
+repository = "https://github.com/kriogenia/ferrux_projection_matrix"
+documentation = "https://docs.rs/ferrux_projection_matrix/latest"
+license = "MIT OR Apache-2.0"
+keywords = [ "perspective", "projection", "matrix", "builder", "graphics", "2D", "3D" ]
+categories = [ "graphics", "rendering" ]
+include = [
+    "/Cargo.*",
+    "/LICENSE-*",
+    "/README.md",
+    "/src/**/*",
+]
+
+[features]
+optimize = ["log/release_max_level_warn"]
+default = ["optimize"]
