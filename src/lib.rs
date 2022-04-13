@@ -76,10 +76,18 @@ impl ProjectionMatrixBuilder {
 	}
 
 	/// Builds the projection matrix derived from the entered parameters and consumes the builder
+	/// 
+	/// # Panic
+	/// If the specified view limit position is less than the specified screen position. The view limit must be
+	/// further in the Z-axis.
 	pub fn build(&self) -> Matrix {
 		let mut matrix = [[0.0; 4]; 4];
 		let aspect_ratio = self.width as f32 / self.height as f32;
 		let fov_rad: f32 = 1.0 / (self.fov * 0.5 / 180.0 * 3.14159).tan();
+
+		if self.view_limit < self.screen_position {
+			panic!("The view limit must be bigger than the screen position, the Z-axis direction is away from the screen");
+		}
 		let distance = self.view_limit - self.screen_position;
 		
 		matrix[0][0] = aspect_ratio * fov_rad;
@@ -102,4 +110,10 @@ fn invalid_fov_low() {
 #[should_panic]
 fn invalid_fov_high() {
 	ProjectionMatrixBuilder::new().set_fov(360.0);
+}
+
+#[test]
+#[should_panic]
+fn invalid_view_limit() {
+	ProjectionMatrixBuilder::new().set_view_limit(0.0).set_screen_position(1.0).build();
 }
