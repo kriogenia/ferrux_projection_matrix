@@ -9,7 +9,7 @@ homepage = "https://crates.io/crates/ferrux_projection_matrix"
 repository = "https://github.com/kriogenia/ferrux_projection_matrix"
 documentation = "https://docs.rs/ferrux_projection_matrix/latest"
 license = "MIT OR Apache-2.0"
-keywords = [ "perspective", "projection", "matrix", "builder", "graphics", "2D", "3D" ]
+keywords = [ "perspective", "projection", "matrix", "graphics", "3D" ]
 categories = [ "graphics", "rendering" ]
 include = [
     "/Cargo.*",
