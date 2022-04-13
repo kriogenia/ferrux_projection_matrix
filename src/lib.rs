@@ -52,7 +52,13 @@ impl ProjectionMatrixBuilder {
 	}
 
 	/// Sets the field of view in grades
+	/// 
+	/// # Panic
+	/// If the entered fov is not within the (0, 360) range
 	pub fn set_fov(mut self, fov: f32) -> Self {
+		if !(0.0..360.0).contains(&fov) {
+			panic!("The field of view must be a positive value between 0.0 and 360.0");
+		}
 		self.fov = fov;
 		self
 	}
@@ -84,4 +90,16 @@ impl ProjectionMatrixBuilder {
 
 		matrix
 	}
+}
+
+#[test]
+#[should_panic]
+fn invalid_fov_low() {
+	ProjectionMatrixBuilder::new().set_fov(-1.0);
+}
+
+#[test]
+#[should_panic]
+fn invalid_fov_high() {
+	ProjectionMatrixBuilder::new().set_fov(360.0);
 }
