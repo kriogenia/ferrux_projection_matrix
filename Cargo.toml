@@ -17,7 +17,3 @@ include = [
     "/README.md",
     "/src/**/*",
 ]
-
-[features]
-optimize = ["log/release_max_level_warn"]
-default = ["optimize"]
